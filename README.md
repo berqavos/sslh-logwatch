@@ -4,6 +4,7 @@ sslh-logwatch
 sslh logwatch perl script
 
 You want to know from where all the nice guys are connecting to the services behind sslh. 
+<pre lang="bash"><code>
 
 #It's handy to configure rsyslog to save the sslh log to a seperate file: 
 
@@ -57,4 +58,4 @@ logwatch --service sslh --output stdout --range today
  ---------------------- sslh connections End ------------------------- 
  
  ^..^
-
+</code></pre>
