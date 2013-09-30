@@ -4,12 +4,15 @@ sslh-logwatch
 sslh logwatch perl script
 
 You want to know from where all the nice guys are connecting to the services behind sslh. 
-___It's handy to configure rsyslog to save the sslh log to a seperate file: 
+
+#It's handy to configure rsyslog to save the sslh log to a seperate file: 
+
 sudo vi /etc/rsyslog/sslh.conf
 if $programname == 'sslh' then /var/log/sslh.log
 if $programname == 'sslh' then ~
 
-___don't forget the logrotate:
+#don't forget the logrotate:
+
 sudo vi /etc/logrotate/sslh
 /var/log/sslh.log
 {
@@ -24,7 +27,7 @@ sudo vi /etc/logrotate/sslh
         endscript
 }
 
-___tell logwatch where your sslh.log files are 
+#tell logwatch where your sslh.log files are 
 sudo vi /etc/logwatch/conf/logfiles/sslh.conf
 LogFile = sslh.log
 LogFile = sslh.log.0
@@ -32,18 +35,18 @@ Archive = sslh.log.*.gz
 
 *ApplyStdDate = 
 
-___logwatch service def
+#logwatch service def
 Title = "sslh connections"
 LogFile = sslh
 
-___and now place the perl sslh script to:
+#and now place the perl sslh script to:
 /etc/logwatch/scripts/services/sslh
 
 
-___if everything is fine you can test it:
+#if everything is fine you can test it with:
 logwatch --service sslh --output stdout --range today
 
-it should look like this: 
+#it should look like this: 
 
  --------------------- sslh connections Begin ------------------------ 
 
