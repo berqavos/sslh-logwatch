@@ -1,0 +1,43 @@
+#!/usr/bin/env perl
+
+use strict;
+use warnings;
+
+use Logwatch ':all';
+
+my $Detail = $ENV{'LOGWATCH_DETAIL_LEVEL'} || 0;
+my $Debug = $ENV{'LOGWATCH_DEBUG'} || 0;
+my $DebugCounter = shift;
+my %Connections = (); 
+
+if ( $Debug >= 5 ) { 
+    print STDERR "\n\nDEBUG: sslh filter\n\n";
+    $DebugCounter = 1;
+}
+
+while (defined(my $ThisLine = <STDIN>)) {
+    if ( $Debug >=5 ) { 
+        print STDERR "Debug($DebugCounter): $ThisLine";
+        $DebugCounter++;
+    }   
+
+    chomp($ThisLine);
+    # double split because of the sslh.log syntax
+    # ip:port
+    my @cols = split m{( |:)}, $ThisLine;
+    # [20] is the srcip and [42] is the service
+    $Connections{$cols[20]," ",$cols[42]}++;
+
+}
+
+if (keys %Connections) {
+    print "\nConnections from:\n";
+    foreach my $ip (sort keys %Connections) {
+        my $totcount = 0;
+        $totcount += $Connections{$ip};
+        my $plural = ($totcount >1) ? "s" : ""; 
+        print " $ip: $totcount time$plural\n";
+    }   
+}
+
+exit(0);
