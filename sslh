@@ -22,11 +22,13 @@ while (defined(my $ThisLine = <STDIN>)) {
     }   
 
     chomp($ThisLine);
-    # double split because of the sslh.log syntax
-    # ip:port
-    my @cols = split m{( |:)}, $ThisLine;
-    # [20] is the srcip and [42] is the service
-    $Connections{$cols[20]," ",$cols[42]}++;
+    if ($ThisLine !~ m/refused/) {
+        # double split because of the sslh.log syntax
+        # ip:port
+        my @cols = split m{(:| +)}, $ThisLine;
+        # [20] is the srcip and [42] is the service
+        $Connections{$cols[20]," ",$cols[42]}++;
+        }
 
 }
 
