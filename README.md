@@ -1,10 +1,11 @@
 sslh-logwatch
 =============
 
+You want to know from where all the nice guys are connecting to the services behind sslh. 
+
 Before you download the sslh-logwatch perl script, you have to do the following:
 
 
-You want to know from where all the nice guys are connecting to the services behind sslh. 
 <pre lang="bash"><code>
 
 #It's handy to configure rsyslog to save the sslh log to a seperate file: 
