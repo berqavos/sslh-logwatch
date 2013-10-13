@@ -1,7 +1,8 @@
 sslh-logwatch
 =============
 
-sslh logwatch perl script
+Before you download the sslh-logwatch perl script, you have to do the following:
+
 
 You want to know from where all the nice guys are connecting to the services behind sslh. 
 <pre lang="bash"><code>
@@ -23,9 +24,6 @@ sudo vi /etc/logrotate/sslh
         notifempty
         compress
         delaycompress
-        postrotate
-                invoke-rc.d rsyslog reload > /dev/null
-        endscript
 }
 
 #tell logwatch where your sslh.log files are 
