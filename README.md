@@ -10,13 +10,13 @@ Before you download the sslh-logwatch perl script, you have to do the following:
 
 #It's handy to configure rsyslog to save the sslh log to a seperate file: 
 
-sudo vi /etc/rsyslog/sslh.conf
+sudo vi /etc/rsyslog.d/sslh.conf
 if $programname == 'sslh' then /var/log/sslh.log
 if $programname == 'sslh' then ~
 
 #don't forget the logrotate:
 
-sudo vi /etc/logrotate/sslh
+sudo vi /etc/logrotate.d/sslh
 /var/log/sslh.log
 {
         rotate 4
