@@ -36,6 +36,7 @@ Archive = sslh.log.*.gz
 *ApplyStdDate = 
 
 #logwatch service def
+sudo vi /etc/logwatch/conf/services/sslh.conf
 Title = "sslh connections"
 LogFile = sslh
 
