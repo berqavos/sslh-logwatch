@@ -44,7 +44,7 @@ LogFile = sslh
 /etc/logwatch/scripts/services/sslh
 
 
-#if everything is fine you can test it with:
+#if everything is ready you can test it with:
 logwatch --service sslh --output stdout --range today
 
 #it should look like this: 
