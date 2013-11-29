@@ -22,7 +22,7 @@ while (defined(my $ThisLine = <STDIN>)) {
     }   
 
     chomp($ThisLine);
-    if ($ThisLine !~ m/refused/) {
+    if ($ThisLine !~ m/refused|resolution/) {
         # double split because of the sslh.log syntax
         # ip:port
         my @lines = split m{(:| +)}, $ThisLine;
